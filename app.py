@@ -1,5 +1,4 @@
 import torch
-import spaces
 from diffusers import StableDiffusionPipeline, DDIMScheduler, AutoencoderKL
 from transformers import AutoFeatureExtractor
 from ip_adapter.ip_adapter_faceid import IPAdapterFaceID, IPAdapterFaceIDPlus
@@ -198,7 +197,6 @@ html, body {
 footer { display: none !important; }
 '''
 
-@spaces.GPU(enable_queue=True)
 def generate_image(images, gender, prompt, progress=gr.Progress(track_tqdm=True)):
     if not prompt:
         prompt = f"Professional portrait of a {gender.lower()}"
@@ -337,4 +335,4 @@ with gr.Blocks(css=css) as demo:
     )
 
 demo.queue()
-demo.launch()
+demo.launch(share=True)
